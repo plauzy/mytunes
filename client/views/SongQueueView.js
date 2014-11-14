@@ -5,11 +5,11 @@ var SongQueueView = Backbone.View.extend({
 
   initialize: function() {
     // this.render();
-    this.collection.on('add', this.render, this);
+    this.collection.on('add remove', this.render, this);
   },
 
   render: function(){
-    debugger
+
 
     // to preserve event handlers on child nodes, we must call .detach() on them before overwriting with .html()
     // see http://api.jquery.com/detach/
@@ -18,7 +18,7 @@ var SongQueueView = Backbone.View.extend({
     this.$el.html('<th>Queue</th>').append(
       this.collection.map(function(song){
         return new SongQueueEntryView({model: song}).render();
-      })
+      }) 
     );
   }
 
